@@ -64,32 +64,32 @@ export async function purchaseCredits(packId: PackId) {
 
   const priceId = seletedPack?.priceId;
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "payment",
-    invoice_creation: {
-      enabled: true,
-    },
-    success_url: getAppUrl("billing"),
-    cancel_url: getAppUrl("billing"),
+  // const session = await stripe.checkout.sessions.create({
+  //   mode: "payment",
+  //   invoice_creation: {
+  //     enabled: true,
+  //   },
+  //   success_url: getAppUrl("billing"),
+  //   cancel_url: getAppUrl("billing"),
 
-    // adding custom details to session info via metadata
-    metadata: {
-      userId,
-      packId,
-    },
-    line_items: [
-      {
-        quantity: 1,
-        price: priceId, // here price refer to priceId from stripe
-      },
-    ],
-  });
+  //   // adding custom details to session info via metadata
+  //   metadata: {
+  //     userId,
+  //     packId,
+  //   },
+  //   line_items: [
+  //     {
+  //       quantity: 1,
+  //       price: priceId, // here price refer to priceId from stripe
+  //     },
+  //   ],
+  // });
 
-  if (!session.url) {
-    throw new Error("Cannot create stripe session");
-  }
+  // if (!session.url) {
+  //   throw new Error("Cannot create stripe session");
+  // }
 
-  redirect(session.url);
+  redirect(getAppUrl("billing"));
 }
 
 export async function getUserPurchases() {
