@@ -59,7 +59,7 @@ export async function purchaseCredits(packId: PackId) {
   const seletedPack = getCreditsPack(packId);
 
   if (!seletedPack) {
-    throw new Error("Inavlid package");
+    throw new Error("Invalid package");
   }
 
   const priceId = seletedPack?.priceId;
