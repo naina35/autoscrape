@@ -19,26 +19,32 @@ export async function GET(request: NextRequest) {
     },
   });
   for (const workflow of workflows) {
-    triggerWorkflow(workflow.id);
+    await triggerWorkflow(workflow.id);
   }
   return Response.json({ workflowsToRun: workflows.length }, { status: 200 });
 }
 
-function triggerWorkflow(wofkflowId: string) {
+async function triggerWorkflow(workflowId: string) {
   const triggerApiUrl = getAppUrl(
-    `api/workflows/execute?workflowId=${wofkflowId}`
+    `api/workflows/execute?workflowId=${workflowId}`
   );
-  fetch(triggerApiUrl, {
-    headers: {
-      Authorization: `Bearer ${process.env.API_SECRET!}`,
-    },
-    cache: "no-store",
-  }).catch((error: any) => {
+  try {
+    const res = await fetch(triggerApiUrl, {
+      headers: {
+        Authorization: `Bearer ${process.env.API_SECRET!}`,
+      },
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      console.error(`Trigger failed for ${workflowId}, status: ${res.status}`);
+    }
+  } catch (error: any) {
     console.error(
       "Error triggering workflow with id",
-      wofkflowId,
+      workflowId,
       ":error->",
       error.message
     );
-  });
+  }
 }
+
