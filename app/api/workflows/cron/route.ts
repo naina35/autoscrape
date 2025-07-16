@@ -1,6 +1,4 @@
 export const dynamic = "force-dynamic";
-
-
 import { getAppUrl } from "@/lib/helper";
 import prisma from "@/lib/prisma";
 import { WorkflowStatus } from "@/lib/types";

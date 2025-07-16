@@ -30,13 +30,13 @@ export async function setupUser() {
   if (!userId) {
     throw new Error("Unauthenticated");
   }
-
+  console.log("user id: ",userId);
   const userBalance = await prisma.userBalance.findUnique({
     where: {
       userId,
     },
   });
-
+  
   if (!userBalance) {
     await prisma.userBalance.create({
       data: {
