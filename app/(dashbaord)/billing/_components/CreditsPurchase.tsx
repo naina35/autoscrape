@@ -61,7 +61,7 @@ function CreditsPurchase() {
                   {pack.name}-{pack.label}
                 </span>
                 <span className="font-bold text-primary">
-                  ${(pack.price / 100).toFixed(2)}
+                  INR {(pack.price / 100).toFixed(2)}
                 </span>
               </Label>
             </div>

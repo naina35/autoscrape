@@ -3,11 +3,10 @@
 import { getCreditsPack, PackId } from "@/lib/billing";
 import { getAppUrl } from "@/lib/helper";
 import prisma from "@/lib/prisma";
-import razorpay from "@/lib/razorpay/razorpay"; // Make sure this path is correct
+import razorpay from "@/lib/razorpay/razorpay"; 
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-export const dynamic = "force-dynamic";
 export async function getAvailableCredits() {
   const { userId } = await auth();
 
@@ -26,10 +25,7 @@ export async function getAvailableCredits() {
   return balance.credits;
 }
 
-/**
- * Sets up an initial credit balance for a newly authenticated user.
- * This function is already compatible with your schema.
- */
+
 export async function setupUser() {
   const { userId } = await auth();
 
@@ -55,13 +51,7 @@ export async function setupUser() {
   redirect("/home");
 }
 
-/**
- * Creates a Razorpay order for a credit purchase.
- * This returns the order details to the client to open the Razorpay Checkout modal.
- *
- * @param packId The ID of the credit pack being purchased.
- * @returns The created Razorpay order object.
- */
+
 export async function purchaseCredits(packId: PackId) {
   const { userId } = await auth();
 
@@ -75,15 +65,13 @@ export async function purchaseCredits(packId: PackId) {
     throw new Error("Invalid package");
   }
 
-  // Razorpay expects the amount in the smallest currency unit (e.g., paise for INR).
-  // Your `getCreditsPack` function should provide this value.
   const options = {
-    amount: selectedPack.price, // e.g., for ₹500, this should be 50000
-    currency: "INR", // Or get this from your config/pack details
+    amount: selectedPack.price, 
+    currency: "INR", 
     receipt: `receipt_order_${new Date().getTime()}`,
     notes: {
-      userId,      // Pass userId to track the purchase
-      packId,      // Pass packId to identify the item
+      userId,      
+      packId,      
     },
   };
 
@@ -96,10 +84,7 @@ export async function purchaseCredits(packId: PackId) {
   }
 }
 
-/**
- * Retrieves the purchase history for the authenticated user.
- * Updated to sort by the 'date' field from your schema.
- */
+
 export async function getUserPurchases() {
   const { userId } = await auth();
 
@@ -112,47 +97,14 @@ export async function getUserPurchases() {
       userId,
     },
     orderBy: {
-      date: "desc", // Corrected to use the 'date' field from your schema
+      date: "desc", 
     },
   });
 }
 
-/**
- * Retrieves the hosted invoice URL from Razorpay for a given purchase.
- *
- * @param id The internal ID of the purchase record from your database.
- * @returns The public URL of the hosted invoice.
- */
+
 export async function downloadInvoice(id: string) {
-  // ========================================================================
-  // IMPORTANT: This function cannot be fully implemented with your current
-  // database schema. The original Stripe logic does not translate directly.
-  //
-  // To enable this functionality with Razorpay, you need to:
-  //
-  // 1. UPDATE YOUR SCHEMA:
-  //    Add a field to your `UserPurchase` model in `schema.prisma` to store
-  //    the Razorpay invoice ID:
-  //
-  //    model UserPurchase {
-  //      // ... existing fields
-  //      invoiceId   String?  // Add this line
-  //    }
-  //
-  //    Then, run `npx prisma db push` or `npx prisma migrate dev`.
-  //
-  // 2. UPDATE YOUR WEBHOOK HANDLER:
-  //    In your `handleRazorpayPaymentCaptured` function, you must extract
-  //    the `invoice_id` from the Razorpay payment payload and save it to
-  //    your new `invoiceId` field in the database.
-  //
-  // Once those changes are made, you can uncomment and use the code below.
-  // ========================================================================
-
-  //throw new Error("Invoice download is not implemented. See code comments for instructions.");
-
-  
-  // UNCOMMENT THIS CODE AFTER UPDATING YOUR SCHEMA AND WEBHOOK
+  //console.log("Invoice download is not implemented. ");
 
   const { userId } = await auth();
 
@@ -171,7 +123,6 @@ export async function downloadInvoice(id: string) {
     throw new Error("Purchase not found");
   }
 
-  // Assumes you have added 'invoiceId' to your UserPurchase model
   const razorpayInvoiceId = (purchase as any).invoiceId;
 
   if (!razorpayInvoiceId) {
