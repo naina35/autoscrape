@@ -84,6 +84,9 @@ export default function HomeLandingPage() {
           No credit card required. Start with 200 free credits.
         </p>
       </SectionWrapper>
+      <footer className="text-white self-center">
+        Contact us : <a href="mailto:prabhpreetkwork@gmail.com" >Email </a>             
+      </footer>
     </div>
   );
 }
