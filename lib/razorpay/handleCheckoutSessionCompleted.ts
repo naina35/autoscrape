@@ -65,19 +65,18 @@ export async function handleRazorpayPaymentCaptured(
         },
       });
 
-      // 3b. Create a record of the purchase.
-      // This now saves both the payment ID and the invoice ID.
-      // IMPORTANT: This requires the schema changes mentioned above.
       await tx.userPurchase.create({
         data: {
           userId,
-          stripeId: payment.id, // Storing the Razorpay Payment ID
-          invoiceId: payment.invoice_id, // Storing the Razorpay Invoice ID
+          stripeId: payment.id, 
+          invoiceId: payment.invoice_id, 
           description: `${purchasedPack.name} - ${purchasedPack.credits} credits`,
           amount: payment.amount,
           currency: payment.currency,
         },
+        
       });
+      console.log("Inserted purchase for", userId, "with Razorpay ID", payment.id);
     });
 
     console.log(
