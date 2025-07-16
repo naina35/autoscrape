@@ -7,7 +7,7 @@ import razorpay from "@/lib/razorpay/razorpay"; // Make sure this path is correc
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-
+export const dynamic = "force-dynamic";
 export async function getAvailableCredits() {
   const { userId } = await auth();
 
