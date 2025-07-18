@@ -20,7 +20,7 @@ export const CreditsPack: CreditsPack[] = [
     label: "1,000 Credits",
     credits: 1,
     price: 100,
-    priceId: process.env.STRIPE_SMALL_PACK_PRICE_ID!,
+    priceId: process.env.RZ_SMALL_PACK_PRICE_ID!,
   },
   {
     id: PackId.MEDIUM,
@@ -28,7 +28,7 @@ export const CreditsPack: CreditsPack[] = [
     label: "5,000 Credits",
     credits: 5000,
     price: 400000,
-    priceId: process.env.STRIPE_MEDIUM_PACK_PRICE_ID!,
+    priceId: process.env.RZ_MEDIUM_PACK_PRICE_ID!,
   },
   {
     id: PackId.LARGE,
@@ -36,7 +36,7 @@ export const CreditsPack: CreditsPack[] = [
     label: "10,000 Credits",
     credits: 10000,
     price: 600000,
-    priceId: process.env.STRIPE_LARGE_PACK_PRICE_ID!,
+    priceId: process.env.RZ_LARGE_PACK_PRICE_ID!,
   },
 ];
 

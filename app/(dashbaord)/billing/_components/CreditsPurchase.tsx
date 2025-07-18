@@ -56,7 +56,6 @@ const CreditsPurchase = () => {
 
       toast.loading("Redirecting to payment...", { id: toastId });
 
-      // Step 2: Configure Razorpay checkout options
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Your Razorpay Key ID from .env.local
         amount: order.amount,

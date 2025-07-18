@@ -18,14 +18,7 @@ interface RazorpayPaymentEntity {
   };
 }
 
-/**
- * Handles the 'payment.captured' event from a Razorpay webhook.
- *
- * This function now saves the Razorpay Payment ID and the associated Invoice ID
- * to the database, in addition to updating the user's credit balance.
- *
- * @param payment The payment entity from the Razorpay webhook payload.
- */
+
 export async function handleRazorpayPaymentCaptured(
   payment: RazorpayPaymentEntity
 ) {
@@ -47,9 +40,7 @@ export async function handleRazorpayPaymentCaptured(
   }
 
   try {
-    // 3. Use a Prisma transaction for atomic database operations.
     await prisma.$transaction(async (tx) => {
-      // 3a. Update user's credit balance.
       await tx.userBalance.upsert({
         where: {
           userId,
@@ -64,7 +55,7 @@ export async function handleRazorpayPaymentCaptured(
           },
         },
       });
-
+      console.log("after user bal");
       await tx.userPurchase.create({
         data: {
           userId,
