@@ -18,8 +18,8 @@ export const CreditsPack: CreditsPack[] = [
     id: PackId.SMALL,
     name: "Small Pack",
     label: "1,000 Credits",
-    credits: 1,
-    price: 100,
+    credits: 1000,
+    price: 100000,
     priceId: process.env.RZ_SMALL_PACK_PRICE_ID!,
   },
   {
