@@ -61,7 +61,7 @@ export const HoverEffect = ({
             </CardTitle>
             <CardDescription className="flex flex-col gap-2">
               <span className="text-3xl font-semibold group-hover:text-primary text-white">
-                INR{item.price}
+                INR {item.price}
               </span>
               <span className="">{item.description}</span>
               <div className="text-white bg-primary px-10 py-2 rounded-md text-center">
