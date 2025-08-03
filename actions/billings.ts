@@ -9,30 +9,24 @@ import { redirect } from "next/navigation";
 
 export async function getAvailableCredits() {
   const { userId } = await auth();
-
   if (!userId) {
     throw new Error("Unauthenticated");
   }
-
   const balance = await prisma.userBalance.findUnique({
     where: {
       userId,
     },
   });
-
   if (!balance) return -1;
-
   return balance.credits;
 }
 
 
 export async function setupUser() {
   const { userId } = await auth();
-
   if (!userId) {
     throw new Error("Unauthenticated");
   }
-
   const userBalance = await prisma.userBalance.findUnique({
     where: {
       userId,
@@ -54,17 +48,13 @@ export async function setupUser() {
 
 export async function purchaseCredits(packId: PackId) {
   const { userId } = await auth();
-
   if (!userId) {
     throw new Error("Unauthenticated");
   }
-
   const selectedPack = getCreditsPack(packId);
-
   if (!selectedPack) {
     throw new Error("Invalid package");
   }
-
   const options = {
     amount: selectedPack.price, 
     currency: "INR", 
@@ -74,7 +64,6 @@ export async function purchaseCredits(packId: PackId) {
       packId,      
     },
   };
-
   try {
     const order = await razorpay.orders.create(options);
     return order;
@@ -91,7 +80,6 @@ export async function getUserPurchases() {
   if (!userId) {
     throw new Error("Unauthenticated");
   }
-
   return await prisma.userPurchase.findMany({
     where: {
       userId,
