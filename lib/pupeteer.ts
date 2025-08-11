@@ -1,10 +1,13 @@
-import puppeteer, { Browser, Page } from "puppeteer-core";
+import puppeteer from "puppeteer-core";
+import chrome from "chrome-aws-lambda";
 
-export async function startBrowser(): Promise<{ browser: Browser; page: Page }> {
+export async function startBrowser() {
+  const executablePath = await chrome.executablePath;
+
   const browser = await puppeteer.launch({
-    headless: true,
-    executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", // path to your Chrome/Chromium
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: chrome.args,
+    executablePath: executablePath || undefined,
+    headless: chrome.headless,
   });
 
   const page = await browser.newPage();
