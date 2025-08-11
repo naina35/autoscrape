@@ -1,14 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-// next.config.js
-module.exports = {
+const nextConfig = {
   webpack: (config) => {
     config.module.rules.push({
       test: /\.js\.map$/,
-      loader: 'ignore-loader',
+      type: 'asset/source', // Treat as raw text so it doesn't break
     });
     return config;
   },
+  productionSourceMaps: false, // Disable sourcemaps in production
 };
 
 export default nextConfig;
