@@ -13,7 +13,8 @@ import {
 import { ExecutionPhase } from "@prisma/client";
 import { TaskRegistry } from "./task/Registry";
 import { ExecutorRegistry } from "./executor/Registry";
-import { Browser, Page } from "puppeteer";
+import type { Browser, Page } from "puppeteer-core";
+
 import { Edge } from "@xyflow/react";
 import { createLogCollector } from "../log";
 
@@ -305,7 +306,7 @@ function createExecutionEnviornment(
 
 async function cleanupEnviornment(enviornment: Enviornment) {
   if (enviornment.browser) {
-    await enviornment.browser.close().catch((err) => {
+    await enviornment.browser.close().catch((err:unknown) => {
       console.log("Cannot close browser, reason:", err);
     });
   }
