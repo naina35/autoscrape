@@ -96,9 +96,9 @@ function CreateCredentialDialog({ triggeredText }: { triggeredText?: string }) {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="flex gap-1 items-center">
-                      Description{" "}
-                      <p className="text-xs text-muted-foreground">
-                        (optinoal)
+                      Value{" "}
+                      <p className="text-xs text-muted-primary">
+                        (required)
                       </p>
                     </FormLabel>
                     <FormControl>

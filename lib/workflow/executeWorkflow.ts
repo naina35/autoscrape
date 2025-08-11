@@ -139,8 +139,9 @@ async function finalizeWorkflowExecution(
       },
     })
     .catch((err) => {
+      console.log(err);
       // Ignoring the error
-      // This means that we have triggred other runs for this workflow, while an execution was running
+      // This means that we have triggered other runs for this workflow, while an execution was running
     });
 }
 
