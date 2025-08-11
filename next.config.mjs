@@ -7,7 +7,7 @@ const nextConfig = {
     });
     return config;
   },
-  productionSourceMaps: false, // Disable sourcemaps in production
+  productionBrowserSourceMaps: false, // ✅ correct way to disable in production
 };
 
 export default nextConfig;
