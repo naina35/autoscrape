@@ -1,6 +1,4 @@
 import { ExecutionEnviornment } from "@/lib/types";
-import puppeteer from "puppeteer-core";
-import chrome from "chrome-aws-lambda";
 import { startBrowser } from "@/lib/pupeteer";
 import { LaunchBrowserTask } from "../task/LaunchBrowser";
 

@@ -1,4 +1,3 @@
-// lib/puppeteer.ts
 import puppeteer, { Browser, Page } from "puppeteer-core";
 
 export async function startBrowser(): Promise<{ browser: Browser; page: Page }> {

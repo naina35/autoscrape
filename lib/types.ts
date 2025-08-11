@@ -1,6 +1,6 @@
 import { Node } from "@xyflow/react";
 import { LucideProps } from "lucide-react";
-import { Browser, Page } from "puppeteer";
+import { Browser, Page } from "puppeteer-core";
 import React from "react";
 
 export enum WorkflowStatus {
