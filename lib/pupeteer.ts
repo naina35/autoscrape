@@ -1,17 +1,26 @@
-// lib/puppeteer.ts
 import puppeteer, { Browser, Page } from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
 
 export async function startBrowser(): Promise<{ browser: Browser; page: Page }> {
-  const isServerless = !!process.env.AWS_EXECUTION_ENV; // Detect if running in AWS Lambda / Vercel
+  const isServerless = !!process.env.AWS_EXECUTION_ENV;
 
-  const executablePath = await chromium.executablePath() // Sparticuz's method returns Promise<string>
-//"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
+  const viewport = {
+    width: 1280,
+    height: 720,
+    deviceScaleFactor: 1,
+    isMobile: false,
+  };
+
+  const executablePath = await chromium.executablePath();
+
   const browser = await puppeteer.launch({
-    headless: true,
-    executablePath: executablePath || undefined,
-    args: isServerless ? chromium.args : [],
-  });
+  executablePath: executablePath || undefined,
+  args: isServerless ? chromium.args : [],
+  headless: isServerless ? ("shell" as any) : true,
+  defaultViewport: viewport,
+  ignoreHTTPSErrors: true,
+});
+
 
   const page = await browser.newPage();
   return { browser, page };
