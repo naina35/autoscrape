@@ -1,9 +1,7 @@
 import puppeteer, { Browser, Page } from "puppeteer-core";
-import chromium from "@sparticuz/chromium";
+import chromium from "@sparticuz/chromium-min";
 
 export async function startBrowser(): Promise<{ browser: Browser; page: Page }> {
-  const isServerless = !!process.env.AWS_EXECUTION_ENV;
-
   const viewport = {
     width: 1280,
     height: 720,
@@ -14,13 +12,12 @@ export async function startBrowser(): Promise<{ browser: Browser; page: Page }> 
   const executablePath = await chromium.executablePath();
 
   const browser = await puppeteer.launch({
-  executablePath: executablePath || undefined,
-  args: isServerless ? chromium.args : [],
-  headless: isServerless ? ("shell" as any) : true,
-  defaultViewport: viewport,
-  ignoreHTTPSErrors: true,
-});
-
+    executablePath,
+    args: chromium.args,
+    headless: true,  // Just set this directly to true for Vercel
+    defaultViewport: viewport,
+    ignoreHTTPSErrors: true,
+  });
 
   const page = await browser.newPage();
   return { browser, page };
