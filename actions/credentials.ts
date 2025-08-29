@@ -27,6 +27,9 @@ export async function getUserCredentials() {
 }
 
 export async function createCredential(form: createCredentialSchemaType) {
+  console.log("Raw key from env:", process.env.ENCRYPTION_KEY);
+console.log("Key length (bytes):", Buffer.from(process.env.ENCRYPTION_KEY!, "hex").length);
+
   const { success, data } = createCredentialSchema.safeParse(form);
 
   if (!success) {

@@ -4,11 +4,16 @@ import "server-only";
 const encALG = "aes-256-cbc"; //Encryption algo name
 
 export function symmetricEncrypt(data: string): string {
-  const key = process.env.ENCRYPTION_KEY;
+const key = process.env.ENCRYPTION_KEY;
+console.log("Raw key from env:", key);
 
-  if (!key) {
-    throw new Error("Encryption key not found");
-  }
+if (!key) {
+  throw new Error("Encryption key not found");
+}
+
+console.log("Key length (bytes):", Buffer.from(key, "hex").length);
+
+console.log("Key length (bytes):", Buffer.from(key, "hex").length);
 
   const iv = crypto.randomBytes(16); // initialization-vector lets u generate unique encryption form same data each time
 
@@ -20,11 +25,14 @@ export function symmetricEncrypt(data: string): string {
 }
 
 export function symmetricDecrypt(encrypted: string): string {
-  const key = process.env.ENCRYPTION_KEY;
-  if (!key) {
-    throw new Error("Encryption key not found");
-  }
+const key = process.env.ENCRYPTION_KEY;
+console.log("Raw key from env:", key);
 
+if (!key) {
+  throw new Error("Encryption key not found");
+}
+
+console.log("Key length (bytes):", Buffer.from(key, "hex").length);
   const textParts = encrypted.split(":");
 
   const iv = Buffer.from(textParts.shift() as string, "hex");

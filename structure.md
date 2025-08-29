@@ -181,39 +181,7 @@
         ├── types.ts
         ├── utils.ts
     └── 📁prisma
-        └── 📁migrations
-            └── 📁20241106070300_init_db
-                ├── migration.sql
-            └── 📁20241110081209_added_workflow_execution
-                ├── migration.sql
-            └── 📁20241111160704_renamed_credits_cost
-                ├── migration.sql
-            └── 📁20241112145624_updated_workflow_model
-                ├── migration.sql
-            └── 📁20241112150928_updated_work_flow_execution_schema_with_credits_consumed
-                ├── migration.sql
-            └── 📁20241112170435_added_definition_to_workflow_execution
-                ├── migration.sql
-            └── 📁20241112171040_default_value_given_to_definition_in_workflow_execution
-                ├── migration.sql
-            └── 📁20241112172217_added_logs
-                ├── migration.sql
-            └── 📁20241113152855_added_user_balance_model
-                ├── migration.sql
-            └── 📁20241113155326_typo_fix
-                ├── migration.sql
-            └── 📁20241113173116_added_execution_plan_and_credits_costs_to_workflow
-                ├── migration.sql
-            └── 📁20241114145945_added_cron_to_workflow
-                ├── migration.sql
-            └── 📁20241114151219_cron_typo_fix
-                ├── migration.sql
-            └── 📁20241115152818_added_credential
-                ├── migration.sql
-            └── 📁20241116183217_added_user_purchase_model
-                ├── migration.sql
-            └── 📁20241116183505_setting_default_date_in_user_purchase
-                ├── migration.sql
+        └──
             ├── migration_lock.toml
         ├── schema.prisma
     └── 📁public
