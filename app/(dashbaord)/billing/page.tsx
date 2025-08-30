@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"; // App Router only
+
 import { getAvailableCredits, getUserPurchases } from "@/actions/billings";
 import ReactCountUpWrapper from "@/components/ReactCountUpWrapper";
 import {

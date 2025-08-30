@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic"; // App Router only
 
 import { purchaseCredits, verifyRazorpayPayment } from "@/actions/billings";
 import { CreditsPack, PackId } from "@/lib/billing";
