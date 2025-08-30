@@ -29,6 +29,7 @@ yarn-error.log*
 .env*.local
 .env
 env.yaml
+
 # vercel
 .vercel
 
