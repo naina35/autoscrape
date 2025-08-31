@@ -23,6 +23,7 @@ export default function RootLayout({
   return (
     <ClerkProvider
       afterSignOutUrl={"/sign-in"}
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
       appearance={{
         elements: {
           formButtonPrimary:
