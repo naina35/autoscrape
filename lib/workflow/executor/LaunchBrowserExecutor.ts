@@ -24,6 +24,7 @@ export async function LaunchBrowserExecutor(
     enviornment.log.info("Browser started successfully");
     enviornment.setBrowser(browser);
     const page = await browser.newPage();
+    page.setDefaultNavigationTimeout(0);
     await page.goto(websiteUrl);
     enviornment.setPage(page);
     enviornment.log.info(`Opened page at: ${websiteUrl}`);
