@@ -1,15 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  env: {
-    // This might be necessary for build-time variables
+    env: {
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+    CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
   },
-  // Ensure environment variables are available at runtime
-  serverRuntimeConfig: {
-    clerkSecretKey: process.env.CLERK_SECRET_KEY,
-  },
-  publicRuntimeConfig: {
-    clerkPublishableKey: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
-  },
-}
 
-module.exports = nextConfig
+};
+
+export default nextConfig;
